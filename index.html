@@ -58,5 +58,21 @@
       </ul>
     </section>
   </main>
+
+  <script>
+    // 마감: 2026년 11월 28일 23:59 (월은 0부터 시작하므로 10 = 11월)
+    var DEADLINE = new Date(2026, 10, 28, 23, 59, 0);
+
+    // now 기준으로 D-day 문구를 돌려줌
+    function getDdayText(now) {
+      if (now > DEADLINE) return '모집 마감';
+      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      var deadlineDay = new Date(DEADLINE.getFullYear(), DEADLINE.getMonth(), DEADLINE.getDate());
+      var diff = Math.round((deadlineDay - today) / 86400000);
+      return diff === 0 ? 'D-day' : 'D-' + diff;
+    }
+
+    document.getElementById('dday').textContent = getDdayText(new Date());
+  </script>
 </body>
 </html>
